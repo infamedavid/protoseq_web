@@ -1,0 +1,6 @@
+Current referenced visual assets:
+
+protoseq-logo.svg
+protoseq-title.svg
+
+No screenshot assets are currently referenced by the site.

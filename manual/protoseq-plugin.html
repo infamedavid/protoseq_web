@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Gina's ARP CLAP/VST</title>
+  <meta name="description" content="VST/CLAP implementation of the Gina's ARP algorithm.">
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="site-wrap topbar-inner">
+    <a class="brand-mini" href="../index.html" aria-label="Protoseq home"><img src="../assets/protoseq-logo.svg" alt=""></a>
+    <nav class="nav-links" aria-label="Main navigation">
+      <a href="protoseq-rack.html">Rack</a>
+      <a href="../index.html#downloads">Download</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="manual-hero">
+    <div class="site-wrap">
+      <h1 class="manual-title">Gina's ARP CLAP/VST</h1>
+      <p class="manual-subtitle">VST/CLAP implementation of the Gina's ARP algorithm.</p>
+    </div>
+  </section>
+
+  <section class="site-wrap manual-layout">
+    <article class="manual-text">
+      <p>Gina's ARP. It generates host-synced arpeggiated MIDI behavior from incoming notes.</p>
+
+      <img class="plugin-wide-image" src="../assets/gina_vst.png" alt="Gina's ARP CLAP/VST interface">
+
+      <div class="param-grid">
+        <section class="param-card">
+          <h3>SEED</h3>
+          <p>Controls the random behavior. 0 keeps changing; fixed values make the pattern repeatable.</p>
+        </section>
+
+        <section class="param-card">
+          <h3>CLOCK</h3>
+          <p>Host-synced timing section for cycle length and arpeggio clock speed.</p>
+          <p><strong>BAR:</strong> sets the number of main pulses before a new cycle starts.</p>
+          <p><strong>ARPC:</strong> arpeggio clock multiplier. It multiplies the main clock that drives Gina.</p>
+        </section>
+
+        <section class="param-card">
+          <h3>ARPEGGIO</h3>
+          <p><strong>ARP LN:</strong> sets the arpeggio length before return.</p>
+          <p><strong>RANGE:</strong> opens the arpeggio by register. Higher values allow wider movement and a more diverse melodic vocabulary.</p>
+          <p><strong>ODTS:</strong> adds note oddities to the phrase. Odd notes appear in the higher register.</p>
+        </section>
+
+        <section class="param-card">
+          <h3>TONALITY</h3>
+          <p><strong>Q:</strong> quantizes the incoming note.</p>
+          <p><strong>KEY / MODE:</strong> sets the tonal center and mode of the arpeggio.</p>
+        </section>
+
+        <section class="param-card">
+          <h3>GATE</h3>
+          <p><strong>GLEN:</strong> arpeggio gate length.</p>
+          <p><strong>RGLN:</strong> random gate length reduction. Higher values make some gates shorter.</p>
+        </section>
+
+        <section class="param-card">
+          <h3>SWING</h3>
+          <p><strong>SWNG:</strong> swing delay amount.</p>
+          <p><strong>RSWN:</strong> swing probability. The distribution depends on SEED.</p>
+        </section>
+
+        <section class="param-card">
+          <h3>RATCHET</h3>
+          <p><strong>NRTC:</strong> ratchet count. Ratchets are micro-pulses distributed across the arpeggio beat.</p>
+          <p><strong>RRTC:</strong> ratchet probability. The distribution depends on SEED.</p>
+          <p>Only ratchet pulses inside the live gate area are heard.</p>
+        </section>
+
+        <section class="param-card">
+          <h3>BRNL</h3>
+          <p>Bernoulli gate filter. 0% lets all gates pass; 100% silences all gates.</p>
+        </section>
+
+        <section class="param-card">
+          <h3>OPTIONS</h3>
+          <p><strong>Ponder ODTS:</strong> keeps note oddities weighted around the tonal center.</p>
+          <p><strong>Include Pivot:</strong> allows the pivot note to appear as a generated note inside the phrase.</p>
+        </section>
+
+        <section class="param-card">
+          <h3>MIDI BEHAVIOR</h3>
+          <p>Incoming notes set the pivot. Note-on starts the phrase from the beginning. Note-off stops the phrase and clears pending notes.</p>
+        </section>
+      </div>
+
+      <div class="manual-nav">
+        <a class="btn" href="../index.html">Back to Main</a>
+        <a class="btn" href="GUMROAD_CLAP_VST_placeholder">CLAP/VST</a>
+      </div>
+    </article>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="site-wrap footer-inner">
+    <div><strong>PROTOSEQ</strong></div>
+    <div>© 2026. All rights reserved. By <a href="https://github.com/infamedavid">InfameDavid</a></div>
+  </div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Protoseq for VCV Rack</title>
+  <meta name="description" content="Modular implementation of the Gina's ARP algorithm for VCV Rack.">
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="site-wrap topbar-inner">
+    <a class="brand-mini" href="../index.html" aria-label="Protoseq home"><img src="../assets/protoseq-logo.svg" alt=""></a>
+    <nav class="nav-links" aria-label="Main navigation">
+      <a href="protoseq-plugin.html">CLAP/VST</a>
+      <a href="../index.html#downloads">Download</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="manual-hero">
+    <div class="site-wrap">
+      <h1 class="manual-title">Protoseq for VCV Rack</h1>
+      <p class="manual-subtitle">Modular implementation of the Gina's ARP algorithm.</p>
+    </div>
+  </section>
+
+  <section class="site-wrap manual-layout">
+    <article class="manual-text">
+      <p>VCV Rack plugin centered around Gina's ARP. It combines register-based arpeggiation, CV control, clocking and cadence sequencing.</p>
+
+      <h3>Gina's ARP</h3>
+      <figure class="manual-image-frame">
+        <img class="manual-module-image open-exp-image" src="../assets/ginas_arp.png" data-exp="../assets/ginas_arp_exp.png" alt="Gina's ARP module">
+        <figcaption>Click for explanatory image</figcaption>
+      </figure>
+      <p>Gina's ARP receives a pivot note and generates melodic output from key, mode, range, oddities, seed behavior, and arpeggio length. The engine favors stable notes in low registers and opens the melodic vocabulary as the register rises.</p>
+      <ul>
+        <li><strong>V/OCT In:</strong> pivot note input.</li>
+        <li><strong>Clock In:</strong> advances the arpeggio.</li>
+        <li><strong>Gate In:</strong> enables phrase output while high.</li>
+        <li><strong>Range:</strong> controls registral opening.</li>
+        <li><strong>ODTS:</strong> controls oddity amount.</li>
+        <li><strong>Seed:</strong> 0 produces mutable behavior; fixed values produce repeatable behavior.</li>
+        <li><strong>ARP LEN:</strong> controls return length and phrase cycle.</li>
+      </ul>
+
+      <h3>ARC</h3>
+      <figure class="manual-image-frame">
+        <img class="manual-module-image open-exp-image" src="../assets/arc.png" data-exp="../assets/arc_exp.png" alt="ARC module">
+        <figcaption>Click for explanatory image</figcaption>
+      </figure>
+      <p>ARC provides timing and gate behavior for arpeggiated sequencing. It controls clock timing, gate length, ratchet behavior, and emits a BAR pulse once per bar/cycle.</p>
+
+      <h3>STP-8</h3>
+      <figure class="manual-image-frame">
+        <img class="manual-module-image open-exp-image" src="../assets/stp8.png" data-exp="../assets/stp8_exp.png" alt="STP-8 module">
+        <figcaption>Click for explanatory image</figcaption>
+      </figure>
+      <p>STP-8 generates pivot movement for Gina's ARP. It uses eight steps, key/mode selection, degree and octave controls, sequence length, seed behavior, playback direction, and random generation based on tonality.</p>
+
+      <h3>Quick start</h3>
+      <p>Protoseq for VCV Rack can be patched from a sequencer module or from a keyboard/MIDI-CV module. ARC provides the clock and gate behavior. Gina's ARP receives the pivot note and generates the melodic output.</p>
+
+      <h4>Basic patch with STP-8</h4>
+      <img class="manual-patch-image" src="../assets/basic.png" alt="Basic patch placeholder using ARC, STP-8 and Gina's ARP">
+      <ul>
+        <li><strong>ARC BAR Out</strong> → <strong>STP-8 BAR In</strong></li>
+        <li><strong>ARC GATE Out</strong> → <strong>Gina's ARP GATE In</strong></li>
+        <li><strong>ARC CLOCK Out</strong> → <strong>Gina's ARP CLOCK In</strong></li>
+        <li><strong>STP-8 V/OCT Out</strong> → <strong>Gina's ARP V/OCT In</strong></li>
+        <li><strong>Gina's ARP V/OCT Out</strong> and <strong>GATE Out</strong> → synth voice</li>
+      </ul>
+      <p>In this patch, STP-8 generates the pivot movement and Gina's ARP turns each pivot into an arpeggiated phrase. ARC keeps the phrase moving and sends the bar/cycle pulse back to STP-8.</p>
+
+      <h4>Keyboard / MIDI-CV patch</h4>
+      <img class="manual-patch-image" src="../assets/midi.png" alt="Keyboard patch placeholder using MIDI-CV, ARC and Gina's ARP">
+      <ul>
+        <li><strong>MIDI-CV V/OCT Out</strong> → <strong>Gina's ARP V/OCT In</strong></li>
+        <li><strong>MIDI-CV GATE Out</strong> → <strong>ARC Play Gate 🎹 Input</strong></li>
+        <li><strong>ARC GATE Out</strong> → <strong>Gina's ARP GATE In</strong></li>
+        <li><strong>ARC CLOCK Out</strong> → <strong>Gina's ARP CLOCK In</strong></li>
+        <li><strong>Gina's ARP V/OCT Out</strong> and <strong>GATE Out</strong> → synth voice</li>
+      </ul>
+      <p>The MIDI gate controls ARC's Play Gate 🎹 input. ARC runs its clock and sends clock/gate output only while this gate is high, so the phrase starts when a key is pressed and stops and resets when the key is released.</p>
+      <p>Changes of a single decimal in the seed generate completely different phrases and melodies.</p>
+
+      <div class="manual-nav basic-patch-download">
+        <a class="btn btn-primary" href="../assets/basic_patch.zip">Download basic patch</a>
+      </div>
+
+
+      <div class="manual-nav">
+        <a class="btn" href="VCV_LIBRARY_placeholder">VCV Library</a>
+        <a class="btn" href="../index.html">Back to Main</a>
+      </div>
+    </article>
+  </section>
+</main>
+
+<div id="expImageModal" class="exp-image-modal" aria-hidden="true">
+  <button class="exp-image-modal-close" type="button" aria-label="Close explanatory image">×</button>
+  <img id="expImageModalImg" src="" alt="">
+</div>
+
+<script>
+  (function () {
+    const modal = document.getElementById('expImageModal');
+    const modalImg = document.getElementById('expImageModalImg');
+    const closeBtn = document.querySelector('.exp-image-modal-close');
+
+    if (!modal || !modalImg || !closeBtn) return;
+
+    document.querySelectorAll('.open-exp-image').forEach((img) => {
+      img.addEventListener('click', () => {
+        const expSrc = img.getAttribute('data-exp');
+        if (!expSrc) return;
+
+        modalImg.src = expSrc;
+        modalImg.alt = img.alt + ' explanatory image';
+        modal.classList.add('is-open');
+        modal.setAttribute('aria-hidden', 'false');
+      });
+    });
+
+    function closeModal() {
+      modal.classList.remove('is-open');
+      modal.setAttribute('aria-hidden', 'true');
+      modalImg.src = '';
+      modalImg.alt = '';
+    }
+
+    closeBtn.addEventListener('click', closeModal);
+
+    modal.addEventListener('click', (event) => {
+      if (event.target === modal) closeModal();
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && modal.classList.contains('is-open')) {
+        closeModal();
+      }
+    });
+  })();
+</script>
+
+<footer class="footer">
+  <div class="site-wrap footer-inner">
+    <div><strong>PROTOSEQ</strong><br></div>
+    <div>  © 2026. All rights reserved. By
+  <a href="https://github.com/infamedavid">InfameDavid</a></div>
+  </div>
+</footer>
+</body>
+</html>
