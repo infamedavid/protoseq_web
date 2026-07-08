@@ -31,14 +31,4 @@ Current placeholder download links:
   protoseq-plugin.html
 ```
 
-## Local preview
 
-```bash
-python -m http.server 8000
-```
-
-Then open:
-
-```text
-http://localhost:8000/
-```
