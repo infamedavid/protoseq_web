@@ -60,6 +60,13 @@
       </figure>
       <p>STP-8 generates pivot movement for Gina's ARP. It uses eight steps, key/mode selection, degree and octave controls, sequence length, seed behavior, playback direction, and random generation based on tonality.</p>
 
+      <h3>BEACON</h3>
+      <figure class="manual-image-frame">
+        <img class="manual-module-image open-exp-image" src="../assets/BEACON.png" data-exp="../assets/beacon_card.png" alt="BEACON module">
+        <figcaption>Click for explanatory image</figcaption>
+      </figure>
+      <p>BEACON is a clock-based buffer and repeater for CV, gates, and audio. Trigger repeats with the size buttons or an external gate, choose FREE or GRID capture timing, and use GLITCH to generate random repeat bursts.</p>
+
       <h3>Quick start</h3>
       <p>Protoseq for VCV Rack can be patched from a sequencer module or from a keyboard/MIDI-CV module. ARC provides the clock and gate behavior. Gina's ARP receives the pivot note and generates the melodic output.</p>
 
@@ -85,6 +92,9 @@
       </ul>
       <p>The MIDI gate controls ARC's Play Gate 🎹 input. ARC runs its clock and sends clock/gate output only while this gate is high, so the phrase starts when a key is pressed and stops and resets when the key is released.</p>
       <p>Changes of a single decimal in the seed generate completely different phrases and melodies.</p>
+
+      <h4>Basic patch with BEACON</h4>
+      <img class="manual-patch-image" src="../assets/basic_beacon.png" alt="Basic patch using ARC, Gina's ARP and BEACON">
 
       <div class="manual-nav basic-patch-download">
         <a class="btn btn-primary" href="../assets/basic_patch.zip">Download basic patch</a>
